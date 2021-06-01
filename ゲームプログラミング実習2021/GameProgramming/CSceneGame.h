@@ -1,9 +1,8 @@
 #ifndef CSCENEGAME_H
 #define CSCENEGAME_H
 #include "CScene.h"
-#include"CKey.h"7
 
-CMatrix Matrix;
+
 /*
 ÉQÅ[ÉÄÇÃÉVÅ[Éì
 */

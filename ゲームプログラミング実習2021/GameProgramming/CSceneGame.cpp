@@ -9,6 +9,12 @@
 #include"CModelX.h"
 
 #include"CModel.h"
+
+#include"CKey.h"
+
+CMatrix Matrix;
+
+
 CSceneGame::~CSceneGame() {
 
 }
