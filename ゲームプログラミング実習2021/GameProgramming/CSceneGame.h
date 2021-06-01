@@ -1,7 +1,9 @@
 #ifndef CSCENEGAME_H
 #define CSCENEGAME_H
 #include "CScene.h"
+#include"CKey.h"7
 
+CMatrix Matrix;
 /*
 ゲームのシーン
 */
@@ -14,6 +16,8 @@ public:
 	//更新処理のオーバーライド
 	void Update();
 
+
+	
 };
 
 #endif

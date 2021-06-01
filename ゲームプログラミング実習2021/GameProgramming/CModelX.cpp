@@ -281,3 +281,5 @@ CModelXFrame::CModelXFrame(CModelX* model){
 				}
 	}
 }
+
+		
