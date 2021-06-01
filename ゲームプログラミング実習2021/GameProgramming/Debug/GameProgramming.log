@@ -1,0 +1,54 @@
+﻿2021/06/01 14:10:37 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\81803\OneDrive\デスクトップ\s\GameProgramming\ゲームプログラミング実習2021\GameProgramming\GameProgramming.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CRes.cpp CSceneGame.cpp CSceneManager.cpp
+         CSceneManager.cpp
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.h(4): warning C4067: プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.h(6): error C2146: 構文エラー : ';' が、識別子 'Matrix' の前に必要です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.h(6): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+         CSceneGame.cpp
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.h(4): warning C4067: プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.h(6): error C2146: 構文エラー : ';' が、識別子 'Matrix' の前に必要です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.h(6): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cvector.h(21): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cvector.h(21): error C2143: 構文エラー : ',' が '&' の前にありません。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(52): error C2146: 構文エラー : ';' が、識別子 'mTransformMatrix' の前に必要です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(52): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(149): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\ctriangle.h(27): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\ctriangle.h(27): error C2143: 構文エラー : ',' が '&' の前にありません。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.h(37): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.h(37): error C2143: 構文エラー : ',' が '&' の前にありません。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(41): error C2064: 0 引数を取り込む関数には評価されません。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(41): error C2228: '.RotateX' の左側はクラス、構造体、共用体でなければなりません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(45): error C2064: 0 引数を取り込む関数には評価されません。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(45): error C2228: '.RotateY' の左側はクラス、構造体、共用体でなければなりません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(49): error C2064: 0 引数を取り込む関数には評価されません。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(49): error C2228: '.RotateX' の左側はクラス、構造体、共用体でなければなりません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(53): error C2064: 0 引数を取り込む関数には評価されません。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(53): error C2228: '.RotateY' の左側はクラス、構造体、共用体でなければなりません
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cscenegame.cpp(56): error C2228: '.mF' の左側はクラス、構造体、共用体でなければなりません
+                 型は 'int' です。
+         CRes.cpp
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(120): error C2065: 'GL_VERTEX_ARRAY' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(120): error C3861: 'glEnableClientState': 識別子が見つかりませんでした
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(121): error C2065: 'GL_NORMAL_ARRAY' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(121): error C3861: 'glEnableClientState': 識別子が見つかりませんでした
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(124): error C2065: 'GL_FLOAT' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(124): error C3861: 'glVertexPointer': 識別子が見つかりませんでした
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(125): error C2065: 'GL_FLOAT' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(125): error C3861: 'glNormalPointer': 識別子が見つかりませんでした
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(128): error C2065: 'GL_TRIANGLES' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(128): error C2065: 'GL_UNSIGNED_INT' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(128): error C3861: 'glDrawElements': 識別子が見つかりませんでした
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(131): error C2065: 'GL_VERTEX_ARRAY' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(131): error C3861: 'glDisableClientState': 識別子が見つかりませんでした
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(132): error C2065: 'GL_NORMAL_ARRAY' : 定義されていない識別子です。
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(132): error C3861: 'glDisableClientState': 識別子が見つかりませんでした
+     1>c:\users\81803\onedrive\デスクトップ\s\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(149): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         コードを生成中...
+     1>プロジェクト "C:\Users\81803\OneDrive\デスクトップ\s\GameProgramming\ゲームプログラミング実習2021\GameProgramming\GameProgramming.vcxproj" (Build ターゲット) のビルドが終了しました -- 失敗。
+
+ビルドに失敗しました。
+
+経過時間 00:00:01.05
