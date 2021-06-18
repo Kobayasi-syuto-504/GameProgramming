@@ -56,6 +56,7 @@ Materialƒf[ƒ^‚Ì“Ç‚Ýž‚Ý‚ÆÝ’è
 */
 CMaterial::CMaterial(CModelX * model)
 :mpTextureFilename(nullptr)
+
 {
 	model->GetToken();//{?Name
 	if (strcmp(model->mToken, "{") != 0){
@@ -89,9 +90,9 @@ CMaterial::CMaterial(CModelX * model)
 		strcpy(mpTextureFilename, model->mToken);
 		model->GetToken();
 		model->GetToken();
-	}
 
-#ifdef_DEBUG
+	}
+#ifdef _DEBUG
 	printf("%s\n", mName);
 	printf("Diffuse:%f%f%f%f\n", mDiffuse[0], mDiffuse[1], mDiffuse[2], mDiffuse[3]);
 	printf("Power:%f\n", mPower);
@@ -99,5 +100,5 @@ CMaterial::CMaterial(CModelX * model)
 	printf("Emissive:%f%f%f\n", mEmissive[0], mEmissive[1], mEmissive[2]);
 #endif
 
-
+	
 }
