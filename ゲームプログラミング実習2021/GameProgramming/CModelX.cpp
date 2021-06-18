@@ -4,7 +4,7 @@
 #include <string.h>
 #include"CModel.h"
 #include"CMatrix.h"
-
+#include"CMaterial.h"
 void CModelX::Load(char *file){
 	//
 	//ファイルサイズを取得する
@@ -216,7 +216,7 @@ CModelXFrame::CModelXFrame(CModelX* model){
 				mpVertex[i].mZ = model->GetFloatToken();
 			}
 			printf("VertexNum:%d\n", mVertexNum);
-			for (int i = 0; i <mVertexNum; i++)
+			for (int i = 0; i < mVertexNum; i++)
 
 			{
 				printf("%10f", mpVertex[i].mX);
@@ -229,59 +229,86 @@ CModelXFrame::CModelXFrame(CModelX* model){
 			for (int i = 0; i < mFaceNum * 3; i += 3){
 				model->GetToken();//頂点数読み飛ばし
 				mpVertexIndex[i] = model->GetIntToken();
-				mpVertexIndex[i+1] = model->GetIntToken();
-				mpVertexIndex[i+2] = model->GetIntToken();
+				mpVertexIndex[i + 1] = model->GetIntToken();
+				mpVertexIndex[i + 2] = model->GetIntToken();
 			}
 			printf("FaceNum:%d\n", mFaceNum);
-			for (int i = 0; i < mFaceNum * 3;i+=3)
+			for (int i = 0; i < mFaceNum * 3; i += 3)
 
 			{
 				printf("%4d", mpVertexIndex[i]);
-				printf("%4d", mpVertexIndex[i+1]);
-				printf("%4d\n", mpVertexIndex[i+2]);
+				printf("%4d", mpVertexIndex[i + 1]);
+				printf("%4d\n", mpVertexIndex[i + 2]);
 			}
-			model->GetToken();//MeshNormals
-			if (strcmp(model->mToken, "MeshNormals") == 0){
+			//文字がなくなったら終わり
+			while (model->mpPointer != '\0'){
+				model->GetToken();//MeshNormals
+				//}かっこの場合は終了
+				if (strchr(model->mToken, '}'))
+					break;
+				if (strcmp(model->mToken, "MeshNormals") == 0){
+					model->GetToken();//{
+					//法線データ数を取得
+					mNormalNum = model->GetIntToken();
+					//法線データを配列に取り込む
+					CVector*pNormal = new CVector[mNormalNum];
+					for (int i = 0; i < mNormalNum; i++){
+						pNormal[i].mX = model->GetFloatToken();
+						pNormal[i].mY = model->GetFloatToken();
+						pNormal[i].mZ = model->GetFloatToken();
+					}
+
+					//法線数＝画数*3
+					mNormalNum = model->GetIntToken() * 3;//FaceNum
+					int ni;
+					mpNormal = new CVector[mNormalNum];
+					for (int i = 0; i < mNormalNum; i += 3){
+						model->GetToken();//3
+						ni = model->GetIntToken();
+						mpNormal[i] = pNormal[ni];
+
+						ni = model->GetIntToken();
+						mpNormal[i + 1] = pNormal[ni];
+
+						ni = model->GetIntToken();
+						mpNormal[i + 2] = pNormal[ni];
+					}
+
+					delete[]pNormal;
+					model->GetToken();//}
+
+					printf("NormalNum:%d\n", mNormalNum);
+					for (int i = 0; i < mNormalNum; i++)
+					{
+						printf("%10f", mpNormal[i].mX);
+						printf("%10f", mpNormal[i].mY);
+						printf("%10f\n", mpNormal[i].mZ);
+					}
+				}
+			
+			//MeshMaterialListの時
+			else if (strcmp(model->mToken, "MeshMaterialList") == 0){
 				model->GetToken();//{
-				//法線データ数を取得
-				mNormalNum = model->GetIntToken();
-				//法線データを配列に取り込む
-				CVector*pNormal = new CVector[mNormalNum];
-				for (int i = 0; i < mNormalNum; i++){
-					pNormal[i].mX = model->GetFloatToken();
-					pNormal[i].mY = model->GetFloatToken();
-					pNormal[i].mZ = model->GetFloatToken();
+				//Materialの数
+				mMaterialNum = model->GetIntToken();
+				//FaceNum
+				mMaterialIndexNum = model->GetIntToken();
+				//マテリアルインデックスの作成
+				mpMaterialIndex = new int[mMaterialIndexNum];
+				for (int i = 0; i < mMaterialIndexNum; i++){
+					mpMaterialIndex[i] = model->GetIntToken();
 				}
-				
-				//法線数＝画数*3
-				mNormalNum = model->GetIntToken() * 3;//FaceNum
-				int ni;
-				mpNormal = new CVector[mNormalNum];
-				for (int i = 0; i < mNormalNum; i += 3){
-					model->GetToken();//3
-					ni = model->GetIntToken();
-					mpNormal[i] = pNormal[ni];
-
-					ni = model->GetIntToken();
-					mpNormal[i+1] = pNormal[ni];
-
-					ni = model->GetIntToken();
-					mpNormal[i+2] = pNormal[ni];
+				//マテリアルデータの作成
+				for (int i = 0; i < mMaterialNum; i++){
+					model->GetToken();//Material
+					if (strcmp(model->mToken, "Material") == 0){
+						mMaterial.push_back(new CMaterial(model));
+					}
 				}
-
-				delete[]pNormal;
-				model->GetToken();//}
-
-				printf("NormalNum:%d\n", mNormalNum);
-				for (int i = 0; i < mNormalNum; i++)
-				{
-					printf("%10f", mpNormal[i].mX);
-					printf("%10f", mpNormal[i].mY);
-					printf("%10f\n", mpNormal[i].mZ);
-				}
+				model->GetToken();//}End of MeshMaterialList
+		}
 	}
 }
-
 		/*
 		Render
 		画面に描画する
@@ -297,8 +324,11 @@ CModelXFrame::CModelXFrame(CModelX* model){
 			glNormalPointer(GL_FLOAT, 0, mpNormal);
 
 			/*頂点のインデックスの場所を指定して図形を描画する*/
-			glDrawElements(GL_TRIANGLES, 3 * mFaceNum, GL_UNSIGNED_INT, mpVertexIndex);
-
+			for (int i = 0; i < mFaceNum; i++){
+				//マテリアルを適用する
+				mMaterial[mpMaterialIndex[i]]->Enabled();
+				glDrawElements(GL_TRIANGLES, 3 ,GL_UNSIGNED_INT, (mpVertexIndex+i*3));
+			}
 			/*頂点データ、法線データの配列を無効にする*/
 			glDisableClientState(GL_VERTEX_ARRAY);
 			glDisableClientState(GL_NORMAL_ARRAY);
