@@ -1,12 +1,88 @@
-﻿2021/06/18 12:16:10 にビルドを開始しました。
+﻿2021/06/28 11:43:52 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\Users\81803\OneDrive\デスクトップ\GP\GameProgramming\ゲームプログラミング実習2021\GameProgramming\GameProgramming.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CMaterial.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CBillBoard.cpp CBullet.cpp CCharacter.cpp CCollider.cpp CColliderLine.cpp CColliderMesh.cpp CColliderTriangle.cpp CCollisionManager.cpp CEffect.cpp CEnemy.cpp CEnemy2.cpp CMaterial.cpp CModel.cpp CModelX.cpp CPlayer.cpp CRes.cpp CSceneGame.cpp
+         CSceneGame.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CRes.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CPlayer.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cplayer.cpp(141): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cplayer.cpp(147): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cplayer.cpp(153): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' の宣言を確認してください。
+         CModelX.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.cpp(14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : 'fopen' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.cpp(142): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : 'strcpy' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.cpp(176): warning C4067: プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.cpp(362): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.cpp(381): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : 'strcpy' の宣言を確認してください。
+         CModel.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(28): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : 'fopen' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(49): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(54): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : 'strncpy' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(82): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : 'fopen' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(100): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(122): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(123): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(124): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(138): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(139): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(140): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : 'sscanf' の宣言を確認してください。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(186): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(188): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(231): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(243): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodel.cpp(284): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
          CMaterial.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
      1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmaterial.cpp(64): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : 'strcpy' の宣言を確認してください。
      1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmaterial.cpp(90): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : 'strcpy' の宣言を確認してください。
+         CEnemy2.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CEnemy.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CEffect.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CCollisionManager.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CColliderTriangle.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CColliderMesh.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\ccollidermesh.cpp(21): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CColliderLine.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CCollider.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CCharacter.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CBullet.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CBillBoard.cpp
+     1>c:\users\81803\onedrive\デスクトップ\gp\gameprogramming\ゲームプログラミング実習2021\gameprogramming\cmodelx.h(74): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         コードを生成中...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\81803\OneDrive\デスクトップ\GP\GameProgramming\ゲームプログラミング実習2021\Debug\GameProgramming.exe" /INCREMENTAL /NOLOGO glew32.lib glfw3.lib glfw3dll.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\81803\OneDrive\デスクトップ\GP\GameProgramming\ゲームプログラミング実習2021\Debug\GameProgramming.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\81803\OneDrive\デスクトップ\GP\GameProgramming\ゲームプログラミング実習2021\Debug\GameProgramming.lib" /MACHINE:X86 Debug\CBillBoard.obj
          Debug\CBullet.obj
@@ -43,4 +119,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:01.01
+経過時間 00:00:05.41
