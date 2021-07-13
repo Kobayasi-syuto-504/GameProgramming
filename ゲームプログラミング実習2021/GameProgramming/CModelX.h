@@ -31,8 +31,6 @@ public:
 		SAFE_DELETE_ARRAY(mpIndex);
 		SAFE_DELETE_ARRAY(mpWeight);
 	}
-
-	
 };
 //CMeshクラスの定義
 class CMesh{
@@ -105,7 +103,51 @@ public:
 	}
 	void Render();
 };
+/*
+CAnimation
+アニメーションクラス
+*/
+class CAnimation{
+public:
+	char*mpFrameName;
+	int mFrameIndex;
+	int mKeyNum;//キー数（時間数）
+	CAnimationKey*mpKey;//キーの配列
 
+
+
+
+	CAnimation(CModelX*model);
+
+	~CAnimation(){
+		SAFE_DELETE_ARRAY(mpFrameName);
+		SAFE_DELETE_ARRAY(mpKey);
+	}
+};
+
+/*
+CAnimationSet
+アニメーションセット
+*/
+class CAnimationSet{
+public:
+
+
+	std::vector<CAnimation*>mAnimation;
+
+	//アニメーションセット名
+	char*mpName;
+
+	CAnimationSet(CModelX*model);
+
+	~CAnimationSet(){
+		SAFE_DELETE_ARRAY(mpName);
+		//アニメーション要素の削除
+		for (int i = 0; i < mAnimation.size(); i++){
+			delete mAnimation[i];
+		}
+	}
+};
 /*
 CModelX
 Xファイル形式の3Dモデルデータをプログラムで認識する
@@ -114,13 +156,18 @@ Xファイル形式の3Dモデルデータをプログラムで認識する
 //浮動小数点データの取
 class CModelX{
 public:
-
 	char*mpPointer; //読み込み位置
 
 	char mToken[1024]; //取り出した単語の領域
 
 
 	std::vector<CModelXFrame*>mFrame;
+
+	//アニメーションセットの配列
+	std::vector<CAnimationSet*>mAnimationSet;
+
+	//フレーム名に該当するフレームのアドレスを返す
+	CModelXFrame*FindFrame(char*name);
 
 	CModelX()
 		:mpPointer(0)
@@ -129,6 +176,9 @@ public:
 		if (mFrame.size() > 0)
 		{
 			delete mFrame[0];
+		}
+		for (int i = 0; i < mAnimationSet.size(); i++){
+			delete mAnimationSet[i];
 		}
 	}
 	//単語の取り出し
@@ -145,8 +195,20 @@ public:
 	void Render();
 
 
-
 };
+
+/*
+CAnimationKey
+アニメーションクラス
+*/
+class CAnimationKey{
+public:
+	//時間
+	float mTime;
+	//行列
+	CMatrix mMatrix;
+};
+
 #endif
 
 

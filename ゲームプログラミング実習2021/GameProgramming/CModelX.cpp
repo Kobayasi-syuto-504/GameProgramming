@@ -44,12 +44,12 @@ void CModelX::Load(char *file){
 			new CModelXFrame(this);
 			
 		}
-
-		if (strcmp(mToken, "AnimationSet") == 0){
-				printf("%s", mToken);
-				GetToken();
-				printf("%s\n", mToken);   
+		//単語がAnimationSetの場合
+		else if (strcmp(mToken, "AnimationSet") == 0){
+			new CAnimationSet(this);
 		}
+
+	
 	}
 		SAFE_DELETE_ARRAY(buf);   //確保した領域を開放する}
 	
@@ -290,16 +290,7 @@ CModelXFrame::CModelXFrame(CModelX* model){
 				//MeshMaterialListの時
 				else if (strcmp(model->mToken, "MeshMaterialList") == 0){
 					model->GetToken();//{
-				}
-				//SkinWeightsの時
-				else if (strcmp(model->mToken, "SkinWeights") == 0){
-					//CSkinWeightsクラスのインスタンスを作成し、はいい列に追加
-					mSkinWeights.push_back(new CSkinWeights(model));
-				}
-				else{
-					//以外のノードは読み飛ばし
-					model->SkipNode();
-				}
+				
 					//Materialの数
 					mMaterialNum = model->GetIntToken();
 					//FaceNum
@@ -318,6 +309,16 @@ CModelXFrame::CModelXFrame(CModelX* model){
 					}
 					model->GetToken();//}End of MeshMaterialList
 				
+				}
+				//SkinWeightsの時
+				else if (strcmp(model->mToken, "SkinWeights") == 0){
+					//CSkinWeightsクラスのインスタンスを作成し、はいい列に追加
+					mSkinWeights.push_back(new CSkinWeights(model));
+				}
+				else{
+					//以外のノードは読み飛ばし
+					model->SkipNode();
+				}
 			}
 		}
 		/*
@@ -371,7 +372,7 @@ CModelXFrame::CModelXFrame(CModelX* model){
 			:mpFrameName(0)
 			, mFrameIndex(0)
 			, mIndexNum(0)
-			, mpIndex(0)
+			, mpIndex(nullptr)
 			, mpWeight(nullptr)
 		{
 			model->GetToken();//{
@@ -398,12 +399,109 @@ CModelXFrame::CModelXFrame(CModelX* model){
 				mOffset.mF[i] = model->GetFloatToken();
 			}
 			model->GetToken();  //}
-		
-#ifndef _DEBUG
-	printf("SKinWeights:%s\n",mpFrameName);
-	for(int i=0;i<mIndexNum;i++){
-		printf("%d",mpIndex[i]);
-		printf("%10f\n",mpWeight[i]);
-	}
+
+
+#ifdef _DEBUG
+			printf("SKinWeights:%s\n", mpFrameName);
+			for (int i = 0; i < mIndexNum; i++){
+				printf("%d", mpIndex[i]);
+				printf("%10f\n", mpWeight[i]);
+			}
+			mOffset.Print();
 #endif
+		}
+/*
+CAnimationSet
+*/
+		CAnimationSet::CAnimationSet(CModelX*model)
+			:mpName(nullptr)
+		{
+			model->mAnimationSet.push_back(this);
+			model->GetToken();//Animetion name
+			//アニメーションセット名を退避
+			mpName = new char[strlen(model->mToken) + 1];
+			strcpy(mpName, model->mToken);
+			model->GetToken();//{
+			while (*model->mpPointer != '\0'){
+				model->GetToken();//}orAnimation
+				if (strchr(model->mToken, '}'))break;
+				if (strcmp(model->mToken, "Animation") == 0){
+					//読み込み
+					mAnimation.push_back(new CAnimation(model));
+					//とりあえず読み飛ばし
+				
+				}
+			}
+
+
+
+		}
+		
+		CAnimation::CAnimation(CModelX*model)
+			: mpFrameName(0)
+			, mFrameIndex(0)
+			, mKeyNum(0)
+			, mpKey(nullptr)
+		{
+			model->GetToken();
+			if (strchr(model->mToken, '{')){
+
+				model->GetToken();//{
+			}
+			else{
+				model->GetToken();
+				model->GetToken();
+			}
+			model->GetToken();//FrameName
+			mpFrameName = new char[strlen(model->mToken) + 1];
+			strcpy(mpFrameName, model->mToken);
+			mFrameIndex =
+				model->FindFrame(model->mToken)->mIndex;
+			model->GetToken();//}
+			//キーの配列を保存しておく配列
+			CMatrix*key[4] = { 0, 0, 0, 0 };
+			//時間の配列を保存しておく配列
+			float*time[4] = { 0, 0, 0, 0 };
+			while (*model->mpPointer != '\0'){
+				model->GetToken();
+				if (strchr(model->mToken, '}'))break;
+				if (strcmp(model->mToken, "AnimationKey") == 0){
+					model->GetToken();//{
+					//データのタイプ取得
+					int type = model->GetIntToken();
+					//時間数取得
+					mKeyNum = model->GetIntToken();
+					switch (type){
+						case 0;//Rotation Quaternion
+							//行数の配列を時間数分確保
+							key[type] = new CMatrix[mKeyNum];
+							//時間の配列を時間数分確保
+							time[type] = new float[mKeyNum];
+					}
+					model->SkipNode();
+				}
+			}
+
+#ifdef _DEBUG
+			printf("Animation:%s\n", mpFrameName);
+#endif
+
+		}
+		/*
+		FindFrame
+		フレーム名に該当するフレームのアドレスを返す
+		*/
+		CModelXFrame*CModelX::FindFrame(char*name){
+			//イテレータの作成
+			std::vector<CModelXFrame*>::iterator itr;
+			//先頭から最後まで繰り返す
+			for (itr = mFrame.begin(); itr != mFrame.end(); itr++){
+				//名前が一致したか？
+				if (strcmp(name, (*itr)->mpName) == 0){
+					//一致したらそのアドレスを返す
+					return*itr;
+				}
+			}
+			//一致するフレームない場合は、NULLを返す
+			return NULL;
 		}
