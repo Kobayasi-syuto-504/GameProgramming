@@ -103,6 +103,18 @@ public:
 	}
 	void Render();
 };
+
+/*
+CAnimationKey
+アニメーションクラス
+*/
+class CAnimationKey{
+public:
+	//時間
+	float mTime;
+	//行列
+	CMatrix mMatrix;
+};
 /*
 CAnimation
 アニメーションクラス
@@ -113,9 +125,6 @@ public:
 	int mFrameIndex;
 	int mKeyNum;//キー数（時間数）
 	CAnimationKey*mpKey;//キーの配列
-
-
-
 
 	CAnimation(CModelX*model);
 
@@ -137,6 +146,9 @@ public:
 
 	//アニメーションセット名
 	char*mpName;
+	float mTime;//現在時間
+	float mWeight;//重み
+	float mMaxTime;//最大時間
 
 	CAnimationSet(CModelX*model);
 
@@ -148,6 +160,9 @@ public:
 		}
 	}
 };
+
+
+
 /*
 CModelX
 Xファイル形式の3Dモデルデータをプログラムで認識する
@@ -194,20 +209,9 @@ public:
 
 	void Render();
 
-
+    void CModelX::AnimateFrame();
 };
 
-/*
-CAnimationKey
-アニメーションクラス
-*/
-class CAnimationKey{
-public:
-	//時間
-	float mTime;
-	//行列
-	CMatrix mMatrix;
-};
 
 #endif
 

@@ -415,6 +415,9 @@ CAnimationSet
 */
 		CAnimationSet::CAnimationSet(CModelX*model)
 			:mpName(nullptr)
+			, mTime(0)
+			, mWeight(0)
+			, mMaxTime(0)
 		{
 			model->mAnimationSet.push_back(this);
 			model->GetToken();//Animetion name
@@ -472,18 +475,87 @@ CAnimationSet
 					//時間数取得
 					mKeyNum = model->GetIntToken();
 					switch (type){
-						case 0;//Rotation Quaternion
+					case 0://Rotation Quaternion
 							//行数の配列を時間数分確保
 							key[type] = new CMatrix[mKeyNum];
 							//時間の配列を時間数分確保
 							time[type] = new float[mKeyNum];
+							//時間数分繰り返す
+							for (int i = 0; i < mKeyNum; i++){
+								//時間取得
+								time[type][i] = model->GetFloatToken();
+								model->GetToken();//4を読み飛ばし
+								//w,x,y,zを取得
+								float w = model->GetFloatToken();
+								float x = model->GetFloatToken();
+								float y = model->GetFloatToken();
+								float z = model->GetFloatToken();
+								//クオータニオンから回転行列に変換
+								key[type][i].SetQuaternion(x, y, z, w);
+							}
+							break;
+						case 1://拡大縮小の行列作成
+							key[type] = new CMatrix[mKeyNum];
+							time[type] = new float[mKeyNum];
+							for (int i = 0; i < mKeyNum; i++){
+								time[type][i] = model->GetFloatToken();
+								model->GetToken();//3
+								float x = model->GetFloatToken();
+								float y = model->GetFloatToken();
+								float z = model->GetFloatToken();
+								key[type][i].mM[0][0] = x;
+								key[type][i].mM[1][1] = y;
+								key[type][i].mM[2][2] = z;
+							}
+							break;
+						case 2:
+							key[type] = new CMatrix[mKeyNum];
+							time[type] = new float[mKeyNum];
+							for (int i = 0; i < mKeyNum; i++){
+								time[type][i] = model->GetFloatToken();
+								model->GetToken();//3
+								float x = model->GetFloatToken();
+								float y = model->GetFloatToken();
+								float z = model->GetFloatToken();
+								key[type][i].Translate(x, y, z);
+							}
+							break;
+						case 4://行列データ
+							mpKey = new CAnimationKey[mKeyNum];
+							for (int i = 0; i < mKeyNum; i++){
+								mpKey[i].mTime = model->GetFloatToken();//mTime
+								model->GetToken();//16
+								for (int j = 0; j < 16; j++){
+									mpKey[i].mMatrix.mF[j] = model->GetFloatToken();
+								}
+							}
+							break;
 					}
+					model->GetToken();
+				}else{
 					model->SkipNode();
 				}
-			}
+			}//whileの終わり
 
+			//行列データではないとき
+			if (mpKey == 0){
+				//時間数分キーを作成
+				mpKey = new CAnimationKey[mKeyNum];
+				for (int i = 0; i < mKeyNum; i++){
+					//時間設定
+					mpKey[i].mTime = time[2][1];//Yime
+						//行列作成　Size*Rotation*Position
+						mpKey[i].mMatrix = key[1][i] * key[0][i] * key[2][i];
+				}
+			}
+			//確保したエリア解放
+			for (int i = 0; i < ARRAY_SIZE(key); i++){
+				SAFE_DELETE_ARRAY(time[i]);
+				SAFE_DELETE_ARRAY(key[i]);
+			}
 #ifdef _DEBUG
 			printf("Animation:%s\n", mpFrameName);
+			mpKey[0].mMatrix.Print();
 #endif
 
 		}
@@ -505,3 +577,85 @@ CAnimationSet
 			//一致するフレームない場合は、NULLを返す
 			return NULL;
 		}
+
+		/*
+		AnimateFrame
+		フレームの変換行列をアニメーションデータで更新する
+		*/
+		void CModelX::AnimateFrame(){
+			//アニメーションで適用されるフレームの
+			//変換行列をゼロにする
+			for (int i = 0; i < mAnimationSet.size(); i++){
+				CAnimationSet*anim = mAnimationSet[i];
+				//重みが０は飛ばす
+				if (anim->mWeight == 0)continue;
+				//フレーム分(Animation分)繰り返す
+				for (int j = 0; j < anim->mAnimation.size(); j++){
+					CAnimation*animation = anim->mAnimation[j];
+					//該当するフレームの変換行列をゼロにする
+					memset(&mFrame[animation->mFrameIndex]->mTransformMatrix, 0, sizeof(CMatrix));
+				}
+			}
+			//アニメーショに該当するフレームの変換行列を
+			//アニメーションのデータで設定する
+			for (int i = 0; i < mAnimationSet.size(); i++){
+				CAnimationSet*anim = mAnimationSet[i];
+				//重みが０は飛ばす
+				if (anim->mWeight == 0)continue;
+				//フレーム分(Animation分)繰り返す
+				for (int j = 0; j < anim->mAnimation.size(); j++){
+					//フレームを取得する
+					CAnimation*animation = anim->mAnimation[j];
+					CModelXFrame*frame = mFrame[animation->mFrameIndex];
+					//キーがない場合は飛ばす
+					if (animation->mpKey == 0)continue;
+					//時間を取得
+					float time = anim ->mTime;
+					//最初の時間より小さい場合
+					if (time<animation->mpKey[0].mTime){
+						//変換行列を0コマ目の行列で更新
+						frame->mTransformMatrix += animation->mpKey[0].mMatrix*anim->mWeight;
+					}
+						//最後の時間より大きい場合
+					else if (time >= animation->mpKey[animation->mKeyNum - 1].mTime){
+						//変換行列を最後のコマの行列で更新
+						frame->mTransformMatrix += animation->mpKey[animation->mKeyNum - 1].mMatrix*anim->mWeight;
+					}
+					else{
+					  //時間の途中の場合
+						for (int k = 1; k < animation->mKeyNum; k++){
+							//変換行列を、線形保管にて更新
+							if (time < animation->mpKey[k].mTime&&
+								animation->mpKey[k - 1].mTime != animation->mpKey[k].mTime){
+							float r = (animation->mpKey[k].mTime - time) /
+							(animation->mpKey[k].mTime - animation->mpKey[k - 1].mTime);
+							frame->mTransformMatrix +=
+								(animation->mpKey[k - 1].mMatrix*r + animation->mpKey[k].mMatrix*(1 - r))*anim -> mWeight;
+							break;
+						}
+					}
+				}
+			}
+		}
+#ifdef _DEBUG
+			for (int i = 0; i < mAnimationSet.size(); i++) {
+				CAnimationSet* anim = mAnimationSet[i];
+				//重みが0は飛ばす
+				if (anim->mWeight == 0) continue;
+				//フレーム分（Animation分）繰り返す
+				for (int j = 0; j < anim->mAnimation.size(); j++) {
+					//フレームを取得する
+					CAnimation* animation = anim->mAnimation[j];
+					CModelXFrame* frame = mFrame[animation->mFrameIndex];
+					printf("Frame:%s\n", frame->mpName);
+					frame->mTransformMatrix.Print();
+				}
+			}
+#endif
+
+	}
+
+
+	
+
+
